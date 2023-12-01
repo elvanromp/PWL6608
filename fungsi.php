@@ -31,3 +31,16 @@ function search($table, $where, $key = null)
   $hasil = mysqli_query($GLOBALS['koneksi'], $sql) or die(mysqli_error($GLOBALS['koneksi']));
   return $hasil;
 }
+
+function generatepdf($size = "A4", $orientation = "Portrait", $html = "head.html", $filename = "doc")
+{
+  require_once __DIR__ . '/vendor/autoload.php';
+
+  $pdf = new \Dompdf\Dompdf();
+
+  $file = file_get_contents($html);
+  $pdf->loadHtml($file);
+  $pdf->setPaper($size, $orientation);
+  $pdf->render();
+  $pdf->stream($filename, array("Attachment" => FALSE));
+}
