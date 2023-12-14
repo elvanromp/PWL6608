@@ -32,15 +32,13 @@ function search($table, $where, $key = null)
   return $hasil;
 }
 
-function generatepdf($size = "A4", $orientation = "Portrait", $html = "head.html", $filename = "doc")
+function generatepdf($size = "A4", $orientation = "Portrait", $html = null, $filename = "doc")
 {
-  require_once __DIR__ . '/vendor/autoload.php';
-
-  $pdf = new \Dompdf\Dompdf();
-
-  $file = file_get_contents($html);
-  $pdf->loadHtml($file);
-  $pdf->setPaper($size, $orientation);
-  $pdf->render();
-  $pdf->stream($filename, array("Attachment" => FALSE));
+    require_once __DIR__ . "/vendor/autoload.php";
+    $pdf = new \Dompdf\Dompdf();
+    // $file = file_get_contents($html);
+    $pdf->loadHtml($html);
+    $pdf->setPaper($size, $orientation);
+    $pdf->render();
+    $pdf->stream($filename . ".pdf", array("Attachment" => FALSE));
 }
