@@ -1,14 +1,14 @@
 <?php
 require "fungsi.php";
-$nim = $_GET['nim'];
-$sql = "select * from krs a join kultawar b on (a.id_jadwal=b.idkultawar) join matkul c on (c.id=b.idmatkul) join dosen d on (b.npp=d.npp) where a.nim='" . $nim . "'";
+$npp = $_GET['npp'];
+$sql = "select * from kultawar a join matkul b on (a.idmatkul=b.id) where a.npp = '".$npp."'";
 $rs = mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
-$mhs = search("mhs", "nim='".$nim."'",$nim);
+$mhs = search("dosen", "npp='".$npp."'",$npp);
 $sks = 0;
 $rsmhs = mysqli_fetch_assoc($mhs);
 $html = "<div style= 'width:100%; text-align:center'><h3>KRS Mahasiswa</h3></div>";
-$html .= "<p>NIM : " . $rsmhs["nim"] . "</p>";
-$html .= "<p>Nama : " . $rsmhs["nama"] . "</p>";
+$html .= "<p>NIM : " . $rsmhs["npp"] . "</p>";
+$html .= "<p>Nama : " . $rsmhs["namadosen"] . "</p>";
 $html .= "<table style='border:1px solid black; border-collapse: collapse'>
     <thead class='thead-light'>
     <tr style='border:1px solid black;'>
@@ -17,7 +17,6 @@ $html .= "<table style='border:1px solid black; border-collapse: collapse'>
         <th style='border:1px solid black;'>Nama Mata Kuliah</th>
         <th style='text-align: center; border:1px solid black;'>SKS</th>
         <th style='text-align: center; border:1px solid black;'>Jadwal</th>
-        <th style='text-align: center; border:1px solid black;'>Dosen Pengampu</th>
     </tr>
 </thead>";
 $i = 1;
@@ -30,7 +29,6 @@ while ($row = mysqli_fetch_assoc($rs)) {
         <td style='border:1px solid black;'>" . $row['namamatkul'] . "</td>
         <td style='border:1px solid black;'>" . $row['sks'] . "</td>
         <td style='text-align: center; border:1px solid black;'>" . $row['hari'] . " - " . $row['jamkul'] . "</td>
-        <td style='border:1px solid black;'>" . $row['namadosen'] . "</td>
     </tr>";
     $i++;
 }
@@ -41,4 +39,4 @@ $html .= "
     <td colspan=2></td>
 </tr>";
 $html .= "</table>";
-generatepdf("A4", "Portrait", $html, "krs_" . $nim);
+generatepdf("A4", "Portrait", $html, "krs_" . $npp);
