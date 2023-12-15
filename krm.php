@@ -6,7 +6,7 @@ $rs = mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
 $mhs = search("dosen", "npp='".$npp."'",$npp);
 $sks = 0;
 $rsmhs = mysqli_fetch_assoc($mhs);
-$html = "<div style= 'width:100%; text-align:center'><h3>KRS Mahasiswa</h3></div>";
+$html = "<div style= 'width:100%; text-align:center'><h3>KRM Dosen</h3></div>";
 $html .= "<p>NIM : " . $rsmhs["npp"] . "</p>";
 $html .= "<p>Nama : " . $rsmhs["namadosen"] . "</p>";
 $html .= "<table style='border:1px solid black; border-collapse: collapse'>
