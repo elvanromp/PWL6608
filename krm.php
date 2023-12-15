@@ -14,9 +14,11 @@ $html .= "<table style='border:1px solid black; border-collapse: collapse'>
     <tr style='border:1px solid black;'>
         <th style='border:1px solid black;'>No</th>
         <th style='border:1px solid black;'>Kode Mata Kuliah</th>
+        <th style='border:1px solid black;'>Kelompok</th>
         <th style='border:1px solid black;'>Nama Mata Kuliah</th>
         <th style='text-align: center; border:1px solid black;'>SKS</th>
         <th style='text-align: center; border:1px solid black;'>Jadwal</th>
+        <th style='text-align: center; border:1px solid black;'>Ruang</th>
     </tr>
 </thead>";
 $i = 1;
@@ -26,17 +28,19 @@ while ($row = mysqli_fetch_assoc($rs)) {
     <tr style='border:1px solid black;'>
         <td style='border:1px solid black;'>" . $i . "</td>
         <td style='border:1px solid black;'>" . $row['idmatkul'] . "</td>
+        <td style='border:1px solid black;'>" . $row['klp'] . "</td>
         <td style='border:1px solid black;'>" . $row['namamatkul'] . "</td>
         <td style='border:1px solid black;'>" . $row['sks'] . "</td>
         <td style='text-align: center; border:1px solid black;'>" . $row['hari'] . " - " . $row['jamkul'] . "</td>
+        <td style='border:1px solid black;'>" . $row['ruang'] . "</td>
     </tr>";
     $i++;
 }
 $html .= "
 <tr style='border:1px solid black;'>
-    <td colspan=3>Total SKS</td>
+    <td colspan=4>Total SKS</td>
     <td style='border:1px solid black;'>" . $sks . "</td>
-    <td></td>
+    <td colspan=2></td>
 </tr>";
 $html .= "</table>";
 generatepdf("A4", "Portrait", $html, "krs_" . $npp);
