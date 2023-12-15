@@ -36,7 +36,7 @@ $html .= "
 <tr style='border:1px solid black;'>
     <td colspan=3>Total SKS</td>
     <td style='border:1px solid black;'>" . $sks . "</td>
-    <td colspan=2></td>
+    <td></td>
 </tr>";
 $html .= "</table>";
 generatepdf("A4", "Portrait", $html, "krs_" . $npp);
