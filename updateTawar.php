@@ -65,7 +65,7 @@
         <span class="float-right">
             <form action="" method="post" class="form-inline">
                 <button class="btn btn-success" type="submit">Cari</button>
-                <input class="form-control mr-2 ml-2" type="text" name="cari" placeholder="cari data dosen..." autocomplete="off">
+                <input class="form-control mr-2 ml-2" type="text" name="cari" placeholder="cari data penawaran..." autocomplete="off">
             </form>
         </span>
         </span>
